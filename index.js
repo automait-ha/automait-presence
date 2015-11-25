@@ -13,6 +13,7 @@ function Presence(automait, logger, config) {
   this.automait = automait
   this.logger = logger
   this.config = config
+  this.eventLastEmitTimes = {}
 }
 
 Presence.prototype = Object.create(Emitter.prototype)
@@ -21,6 +22,20 @@ Presence.prototype.init = function () {
   this.presence = setInitialPresence.call(this, this.config)
   this.startDhcpCheck()
   this.startOwntracksCheck()
+}
+
+Presence.prototype.emit = function (eventName) {
+  var eventParts = eventName.split(':')
+  eventParts.pop()
+  var eventPrefix = eventParts.join(':')
+    , now = (new Date()).getTime()
+    , lastEmitTime = this.eventLastEmitTimes[eventPrefix]
+
+  if (!lastEmitTime || now - lastEmitTime >= 60000) {
+    this.eventLastEmitTimes[eventPrefix] = now
+    return Emitter.prototype.emit.apply(this, arguments)
+  }
+
 }
 
 Presence.prototype.startDhcpCheck = dhcpChecker
