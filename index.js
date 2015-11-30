@@ -34,6 +34,8 @@ Presence.prototype.emit = function (eventName) {
   if (!lastEmitTime || now - lastEmitTime >= 60000) {
     this.eventLastEmitTimes[eventPrefix] = now
     return Emitter.prototype.emit.apply(this, arguments)
+  } else {
+    this.logger.info('Presence event squelched:', eventName)
   }
 
 }
