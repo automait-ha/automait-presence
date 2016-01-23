@@ -1,0 +1,15 @@
+{
+  "name": "automait-presence",
+  "version": "2.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "test": "mocha -R spec test/presence.test.js"
+  },
+  "dependencies": {
+    "async": "^1.5.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
+}

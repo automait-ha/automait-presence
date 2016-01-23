@@ -1,0 +1,24 @@
+{ "locations": [
+    { "name": "Home",
+      "zones": [
+        { "name": "Upstairs",
+          "zoneBoundaryBreakSeparationTime": 2000,
+          "zones": [
+            { "name": "Bedroom"
+            , "zones": [
+                { "name": "Corner" }
+              ]
+            }
+          ]
+        },
+        { "name": "Downstairs",
+          "zoneBoundaryBreakSeparationTime": 1000,
+          "zones": [
+            { "name": "Cinema" }
+          ]
+        }
+      ]
+    }
+  ],
+  "people": [ "Adam", "Emma" ]
+}
