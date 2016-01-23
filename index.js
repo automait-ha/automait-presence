@@ -117,8 +117,11 @@ Presence.prototype.decrementZoneOccupancyCount = function (locationName, zoneHie
   if (!this.presence[locationName]) return callback(new Error('Unknown location: ' + locationName))
   determineZoneFromHierachy(zoneHierachy, this.presence[locationName], function (error, zone) {
     if (error) return callback(error)
-    if (zone.occupancyCount === 0) return callback()
-    zone.occupancyCount = zone.occupancyCount - 1
+    if (zone.occupancyCount > 0) {
+      zone.occupancyCount = zone.occupancyCount - 1
+    } else {
+      this.logger.warn('Trying to decrement zone occupancyCount below 0: ' + zone.name)
+    }
 
     if (zone.occupancyCount === 0) {
       this.setZoneOccupied(locationName, zoneHierachy, false, callback)
