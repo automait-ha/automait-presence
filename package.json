@@ -7,7 +7,7 @@
     "test": "mocha -R spec test/presence.test.js"
   },
   "dependencies": {
-    "async": "^1.5.2"
+    "async": "^2.6.4"
   },
   "devDependencies": {
     "mocha": "^2.3.4"
